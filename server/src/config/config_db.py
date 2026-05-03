@@ -1,8 +1,9 @@
 from pydantic_settings import BaseSettings,SettingsConfigDict
 from pathlib import Path
 
-ENV_FILE = Path(__file__).resolve().parent.parent.parent/".env"
-TEST_ENV_FILE = Path(__file__).resolve().parent.parent.parent/"test.env"
+ENV_FILE = Path(__file__).resolve().parent.parent.parent.parent/"envs/.env.db.prod"
+TEST_ENV_FILE = Path(__file__).resolve().parent.parent.parent.parent/"envs/.env.db.test"
+
 class Settings(BaseSettings):
     DB_NAME : str
     DB_PORT : str
@@ -25,6 +26,9 @@ class TestSettings(BaseSettings):
     def URL(self) -> str:
         return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
     model_config = SettingsConfigDict(env_file=TEST_ENV_FILE)
+
+
+
 
 settings = Settings()
 

@@ -5,3 +5,6 @@ yt_dlp
 fastapi
 uvicorn
 pydantic
+pytest
+pytest-asyncio
+aiogram

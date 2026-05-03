@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker,async_
 from sqlalchemy.orm import DeclarativeBase
 from typing import Annotated
 from fastapi import Depends
-from config import settings
+from config.config_db import settings
 
 engine = create_async_engine(url=settings.URL)
 
@@ -20,7 +20,5 @@ async def get_session():
 async def init_tables():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-
-
 
 SessionDep = Annotated[AsyncSession,Depends(get_session)]
