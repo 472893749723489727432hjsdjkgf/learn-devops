@@ -4,3 +4,4 @@ asyncpg
 yt_dlp
 fastapi
 uvicorn
+pydantic
